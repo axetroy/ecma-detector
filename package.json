@@ -32,7 +32,8 @@
         "test": "node --import tsx --test **/*.test.ts",
         "build": "npm run build:esm && npm run build:cjs",
         "build:esm": "tsc -p ./tsconfig.esm.json && node script/covert2mjs.cjs",
-        "build:cjs": "tsc -p ./tsconfig.cjs.json && node script/covert2cjs.cjs"
+        "build:cjs": "tsc -p ./tsconfig.cjs.json && node script/covert2cjs.cjs",
+        "prepack": "npm run build"
     },
     "author": "Axetroy <axetroy.dev@gmail.com>",
     "license": "MIT",
