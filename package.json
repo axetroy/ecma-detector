@@ -1,0 +1,65 @@
+{
+    "name": "ecma-detector",
+    "version": "0.0.1",
+    "private": false,
+    "description": "Detect the version of the current ECMAScript",
+    "sideEffects": false,
+    "engines": {
+        "node": ">= 14"
+    },
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/cjs/index.js",
+    "module": "./dist/esm/index.js",
+    "exports": {
+    "./package.json": {
+        "import": "./package.json",
+        "require": "./package.json"
+    },
+    ".": {
+        "require": {
+        "default": "./dist/cjs/index.cjs",
+        "types": "./dist/cjs/index.d.ts"
+        },
+        "import": {
+        "default": "./dist/esm/index.mjs",
+        "types": "./dist/esm/index.d.ts"
+        }
+    }
+    },
+    "scripts": {
+        "test": "node --import tsx --test **/*.test.ts",
+        "build": "npm run build:esm && npm run build:cjs",
+        "build:esm": "tsc -p ./tsconfig.esm.json && node script/covert2mjs.cjs",
+        "build:cjs": "tsc -p ./tsconfig.cjs.json && node script/covert2cjs.cjs"
+    },
+    "author": "Axetroy <axetroy.dev@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "@babel/core": "^7.26.0",
+        "@babel/parser": "^7.26.3",
+        "@babel/traverse": "^7.26.4"
+    },
+    "devDependencies": {
+        "@babel/register": "^7.24.6",
+        "@types/babel__core": "^7.20.5",
+        "@types/babel__traverse": "^7.20.6",
+        "@types/node": "^22.10.2",
+        "outdent": "^0.8.0",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2"
+    },
+    "keywords": [
+        "ecma",
+        "detector"
+    ],
+    "homepage": "https://github.com/axetroy/ecma-detector#readme",
+    "bugs": {
+        "url": "https://github.com/axetroy/ecma-detector/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/axetroy/ecma-detector.git"
+    }
+}
