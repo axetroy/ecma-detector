@@ -10,16 +10,17 @@ import { es2020 } from "./es2020";
 import { es2021 } from "./es2021";
 import { es2022 } from "./es2022";
 
-const versions: Record<ECMAScriptVersion, (references: any) => Visitor> = {
-  2015: es2015,
-  2016: es2016,
-  2017: es2017,
-  2018: es2018,
-  2019: es2019,
-  2020: es2020,
-  2021: es2021,
-  2022: es2022,
-};
+const versions: Record<ECMAScriptVersion, (references: any) => Visitor> =
+  Object.assign(Object.create(null), {
+    2015: es2015,
+    2016: es2016,
+    2017: es2017,
+    2018: es2018,
+    2019: es2019,
+    2020: es2020,
+    2021: es2021,
+    2022: es2022,
+  });
 
 export type ECMAScriptVersion =
   | "2015"
@@ -55,6 +56,10 @@ export const isECMAScript2022 = (code: string) => isECMAScript(code, "2022");
 
 export const isECMAScript: IsECMAScript = Object.assign(
   (code: string, version: ECMAScriptVersion) => {
+    if (version in versions === false) {
+      throw new Error(`Unsupported version: ${version}`);
+    }
+
     const ast = parser.parse(code, { sourceType: "module" });
 
     const result = { result: false, sourceCode: code };
@@ -84,7 +89,7 @@ export const isECMAScript: IsECMAScript = Object.assign(
 
 export default isECMAScript;
 
-function combineVisitors(...visitors: any[]) {
+function combineVisitors(...visitors: Visitor[]) {
   return visitors.reduce((acc, visitor) => {
     for (const key in visitor) {
       if (acc[key]) {

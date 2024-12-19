@@ -1,6 +1,6 @@
 {
     "name": "ecma-detector",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "private": false,
     "description": "Detect the version of the current ECMAScript",
     "sideEffects": false,
@@ -13,20 +13,20 @@
     "main": "./dist/cjs/index.js",
     "module": "./dist/esm/index.js",
     "exports": {
-    "./package.json": {
-        "import": "./package.json",
-        "require": "./package.json"
-    },
-    ".": {
-        "require": {
-        "default": "./dist/cjs/index.cjs",
-        "types": "./dist/cjs/index.d.ts"
+        "./package.json": {
+            "import": "./package.json",
+            "require": "./package.json"
         },
-        "import": {
-        "default": "./dist/esm/index.mjs",
-        "types": "./dist/esm/index.d.ts"
+        ".": {
+            "require": {
+                "default": "./dist/cjs/index.cjs",
+                "types": "./dist/cjs/index.d.ts"
+            },
+            "import": {
+                "default": "./dist/esm/index.mjs",
+                "types": "./dist/esm/index.d.ts"
+            }
         }
-    }
     },
     "scripts": {
         "test": "node --import tsx --test **/*.test.ts",
@@ -37,7 +37,6 @@
     "author": "Axetroy <axetroy.dev@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "@babel/core": "^7.26.0",
         "@babel/parser": "^7.26.3",
         "@babel/traverse": "^7.26.4"
     },

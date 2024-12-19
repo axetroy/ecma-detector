@@ -135,3 +135,15 @@ test("detect", (t) => {
     }
   }
 });
+
+test("detect invalid version", (t) => {
+  const invalidVersions = ["es5", "2014", "2023", "toString"];
+
+  for (const version of invalidVersions) {
+    assert.throws(
+      // @ts-expect-error ignore
+      () => isECMAScript("var a = 1", version),
+      new Error(`Unsupported version: ${version}`)
+    );
+  }
+});
