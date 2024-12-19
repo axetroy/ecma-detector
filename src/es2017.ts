@@ -1,16 +1,14 @@
 import type { Visitor } from "@babel/traverse";
 import type { Comment, Identifier, RestElement, Pattern } from "@babel/types";
 import type { NodePath } from "@babel/traverse";
+import type { Context } from "./common";
 
 /**
  * 判断是否是 es2017 语法
  */
-export function es2017(references: {
-  result: boolean;
-  sourceCode: string;
-}): Visitor {
+export function es2017(context: Context): Visitor {
   const found = (path: NodePath) => {
-    references.result = true;
+    context.result = true;
     path.stop();
   };
 
@@ -36,7 +34,7 @@ export function es2017(references: {
         }
 
         // 通过位置信息判断最后一个参数后面是否有逗号
-        const text = references.sourceCode.slice(
+        const text = context.sourceCode.slice(
           lastNode.end as number,
           path.node.body.start as number
         );

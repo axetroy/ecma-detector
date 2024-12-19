@@ -1,12 +1,13 @@
 import type { Visitor } from "@babel/traverse";
 import type { NodePath } from "@babel/traverse";
+import type { Context } from "./common";
 
 /**
  * 判断是否是 es2016 语法
  */
-export function es2016(references: { result: boolean }): Visitor {
+export function es2016(context: Context): Visitor {
   const found = (path: NodePath) => {
-    references.result = true;
+    context.result = true;
     path.stop();
   };
 

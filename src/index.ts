@@ -9,8 +9,9 @@ import { es2019 } from "./es2019";
 import { es2020 } from "./es2020";
 import { es2021 } from "./es2021";
 import { es2022 } from "./es2022";
+import type { Context } from "./common";
 
-const versions: Record<ECMAScriptVersion, (references: any) => Visitor> =
+const versions: Record<ECMAScriptVersion, (context: Context) => Visitor> =
   Object.assign(Object.create(null), {
     2015: es2015,
     2016: es2016,
@@ -62,7 +63,7 @@ export const isECMAScript: IsECMAScript = Object.assign(
 
     const ast = parser.parse(code, { sourceType: "module" });
 
-    const result = { result: false, sourceCode: code };
+    const result: Context = { result: false, sourceCode: code };
 
     traverse(
       ast,
