@@ -61,7 +61,8 @@ export function es2015(context: Context): Visitor {
       }
     },
     RegExpLiteral(path) {
-      path.node.flags.includes("u") && found(path);
+      const flags = path.node.flags;
+      (flags.includes("u") || flags.includes("y")) && found(path);
     },
     NumericLiteral(path) {
       if (

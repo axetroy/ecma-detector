@@ -43,6 +43,7 @@ const testCases = {
     "const binary = 0B00000000011111111111111111111111",
     "const octal = 0o1234567",
     "/^.$/u",
+    "/a/y",
   ],
   2016: ["2 ** 2"],
   2017: [
@@ -88,6 +89,7 @@ const testCases = {
   ],
   2023: [],
   2024: ["/^.$/v"],
+  2025: ["/(?<a>x)|\\k<a>/", "/^(?i:[a-z])[a-z]$/"],
 };
 
 function getGreaterThanVersion(version: string) {

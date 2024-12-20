@@ -11,6 +11,7 @@ import { es2021 } from "./es2021";
 import { es2022 } from "./es2022";
 import { es2023 } from "./es2023";
 import { es2024 } from "./es2024";
+import { es2025 } from "./es2025";
 import type { Context } from "./common";
 
 const versions: Record<ECMAScriptVersion, (context: Context) => Visitor> =
@@ -25,6 +26,7 @@ const versions: Record<ECMAScriptVersion, (context: Context) => Visitor> =
     2022: es2022,
     2023: es2023,
     2024: es2024,
+    2025: es2025,
   });
 
 export type ECMAScriptVersion =
@@ -37,6 +39,7 @@ export type ECMAScriptVersion =
   | "2021"
   | "2022"
   | "2023"
+  | "2025"
   | "2024";
 
 export interface IsECMAScript {
@@ -52,6 +55,7 @@ export interface IsECMAScript {
   isECMAScript2022(code: string): boolean;
   isECMAScript2023(code: string): boolean;
   isECMAScript2024(code: string): boolean;
+  isECMAScript2025(code: string): boolean;
 }
 
 export const isECMAScript2015 = (code: string) => isECMAScript(code, "2015");
@@ -64,6 +68,7 @@ export const isECMAScript2021 = (code: string) => isECMAScript(code, "2021");
 export const isECMAScript2022 = (code: string) => isECMAScript(code, "2022");
 export const isECMAScript2023 = (code: string) => isECMAScript(code, "2023");
 export const isECMAScript2024 = (code: string) => isECMAScript(code, "2024");
+export const isECMAScript2025 = (code: string) => isECMAScript(code, "2025");
 
 export const isECMAScript: IsECMAScript = Object.assign(
   (code: string, version: ECMAScriptVersion) => {
@@ -97,6 +102,7 @@ export const isECMAScript: IsECMAScript = Object.assign(
     isECMAScript2022,
     isECMAScript2023,
     isECMAScript2024,
+    isECMAScript2025,
   }
 );
 
