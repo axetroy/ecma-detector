@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import { isECMAScript } from "../src/index";
+import { ECMAScriptVersion, isECMAScript } from "../src/index";
 import outdent from "outdent";
 
 const testCases = {
@@ -42,7 +42,7 @@ const testCases = {
     "function a(a, ...b) {}",
     "const binary = 0B00000000011111111111111111111111",
     "const octal = 0o1234567",
-    "/^.$/u"
+    "/^.$/u",
   ],
   2016: ["2 ** 2"],
   2017: [
@@ -86,9 +86,10 @@ const testCases = {
           }
         `,
   ],
+  2023: [],
 };
 
-function getGreaterThanVersion(version) {
+function getGreaterThanVersion(version: string) {
   const versions = Object.keys(testCases);
   const index = versions.indexOf(version);
 
@@ -99,7 +100,7 @@ function getGreaterThanVersion(version) {
   return versions.slice(index + 1);
 }
 
-function getLessThanVersion(version) {
+function getLessThanVersion(version: string) {
   const versions = Object.keys(testCases);
   const index = versions.indexOf(version);
 
@@ -116,10 +117,12 @@ test("detect", (t) => {
 
     const fn = isECMAScript[`isECMAScript${version}`];
 
-    for (const code of [
+    const samples = [
       ...testCase,
       ...getGreaterThanVersion(version).flatMap((v) => testCases[v]),
-    ]) {
+    ];
+
+    for (const code of samples) {
       assert(fn(code), `'${code}' should be es${version}`);
     }
   }
@@ -129,16 +132,16 @@ test("detect", (t) => {
 
     const fn = isECMAScript[`isECMAScript${version}`];
 
-    for (const code of getLessThanVersion(version).flatMap(
-      (v) => testCases[v]
-    )) {
+    const samples = getLessThanVersion(version).flatMap((v) => testCases[v]);
+
+    for (const code of samples) {
       assert(!fn(code), `'${code}' should not be es${version}`);
     }
   }
 });
 
 test("detect invalid version", (t) => {
-  const invalidVersions = ["es5", "2014", "2023", "toString"];
+  const invalidVersions = ["es5", "2014", "toString", "2035"];
 
   for (const version of invalidVersions) {
     assert.throws(
