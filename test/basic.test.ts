@@ -33,7 +33,6 @@ const testCases = {
     "`${a}`",
     "a`b`",
     "class A { constructor() { new.target } }",
-    "import.meta",
     "100n",
     "function a({ a = 1 }) {}",
     "function a([a = 1]) {}",
@@ -86,6 +85,8 @@ const testCases = {
             }
           }
         `,
+    "/a/d",
+    "import.meta.url",
   ],
   2023: [],
   2024: ["/^.$/v"],

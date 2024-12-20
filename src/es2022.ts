@@ -23,6 +23,18 @@ export function es2022(context: Context): Visitor {
         found(path);
       }
     },
+    RegExpLiteral(path) {
+      // See: https://github.com/tc39/proposal-regexp-match-indices?tab=readme-ov-file#why-use-d-for-the-regexp-flag
+      if (path.node.flags.includes("d")) {
+        found(path);
+      }
+    },
+    MetaProperty(path) {
+      // See: https://github.com/tc39/proposal-import-meta
+      path.node.meta.name === "import" &&
+        path.node.property.name === "meta" &&
+        found(path);
+    },
     ...[...ECMAScript2022Nodes].reduce((acc, nodeType) => {
       acc[nodeType] = found;
       return acc;
