@@ -1,6 +1,6 @@
 {
     "name": "ecma-detector",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "private": false,
     "description": "Detect the version of the current ECMAScript",
     "sideEffects": false,
