@@ -19,6 +19,12 @@ export function es2018(context: Context): Visitor {
         found(path);
       }
     },
+    RegExpLiteral(path) {
+      // Sett: https://github.com/tc39/proposal-regexp-unicode-property-escapes
+      if (path.node.flags.includes("u") && path.node.pattern.includes("\\p")) {
+        found(path);
+      }
+    },
     ...[...ECMAScript2018Nodes].reduce((acc, nodeType) => {
       acc[nodeType] = found;
       return acc;

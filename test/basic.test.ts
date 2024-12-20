@@ -54,7 +54,7 @@ const testCases = {
     "function foo(a,b/** */,) {}",
     "function foo(a,b/** */  ,) {}",
   ],
-  2018: ["for await (const item of items) {}"],
+  2018: ["for await (const item of items) {}", "/\\p{Script=Greek}/u"],
   2019: ["try {} catch {}"],
   2020: ["a?.b?.c", "a ?? b", 'import("./foo")'],
   2021: ["const budget = 1_000_000_000_000;", "a ||= b; // a || (a = b);"],
