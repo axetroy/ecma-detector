@@ -11,7 +11,7 @@ export function es2022(context: Context): Visitor {
     path.stop();
   };
 
-  const ECMAScript2021Nodes = new Set([
+  const ECMAScript2022Nodes = new Set([
     "StaticBlock",
     "ClassPrivateProperty",
     "PrivateName",
@@ -23,7 +23,7 @@ export function es2022(context: Context): Visitor {
         found(path);
       }
     },
-    ...[...ECMAScript2021Nodes].reduce((acc, nodeType) => {
+    ...[...ECMAScript2022Nodes].reduce((acc, nodeType) => {
       acc[nodeType] = found;
       return acc;
     }, {}),
