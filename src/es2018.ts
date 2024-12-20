@@ -20,8 +20,12 @@ export function es2018(context: Context): Visitor {
       }
     },
     RegExpLiteral(path) {
-      // Sett: https://github.com/tc39/proposal-regexp-unicode-property-escapes
-      if (path.node.flags.includes("u") && path.node.pattern.includes("\\p")) {
+      if (
+        // See: https://github.com/tc39/proposal-regexp-unicode-property-escapes
+        (path.node.flags.includes("u") && path.node.pattern.includes("\\p")) ||
+        // See: https://github.com/tc39/proposal-regexp-dotall-flag
+        path.node.flags.includes("s")
+      ) {
         found(path);
       }
     },
