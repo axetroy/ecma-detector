@@ -42,6 +42,7 @@ const testCases = {
     "function a(a, ...b) {}",
     "const binary = 0B00000000011111111111111111111111",
     "const octal = 0o1234567",
+    "/^.$/u"
   ],
   2016: ["2 ** 2"],
   2017: [

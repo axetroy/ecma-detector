@@ -60,6 +60,9 @@ export function es2015(context: Context): Visitor {
         found(path);
       }
     },
+    RegExpLiteral(path) {
+      path.node.flags.includes("u") && found(path);
+    },
     NumericLiteral(path) {
       if (
         typeof path.node.extra?.raw === "string" &&
