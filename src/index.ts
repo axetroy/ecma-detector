@@ -40,7 +40,8 @@ export type ECMAScriptVersion =
   | "2022"
   | "2023"
   | "2025"
-  | "2024";
+  | "2024"
+  | "2025";
 
 export interface IsECMAScript {
   (code: string, version: ECMAScriptVersion): boolean;
