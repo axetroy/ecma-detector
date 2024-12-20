@@ -87,6 +87,7 @@ const testCases = {
         `,
   ],
   2023: [],
+  2024: ["/^.$/v"],
 };
 
 function getGreaterThanVersion(version: string) {
