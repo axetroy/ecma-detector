@@ -19,6 +19,10 @@ export function es2020(context: Context): Visitor {
         found(path);
       }
     },
+    CallExpression(path) {
+      // See: https://github.com/tc39/proposal-dynamic-import
+      path.node.callee.type === "Import" && found(path);
+    },
     ...[...ECMAScript2020Nodes].reduce((acc, nodeType) => {
       acc[nodeType] = found;
       return acc;

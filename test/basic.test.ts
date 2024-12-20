@@ -29,7 +29,6 @@ const testCases = {
     "export const a = 1",
     "export function a() {}",
     "for (let a of []) {}",
-    'import("./foo")',
     "`${a}`",
     "a`b`",
     "class A { constructor() { new.target } }",
@@ -57,7 +56,7 @@ const testCases = {
   ],
   2018: ["for await (const item of items) {}"],
   2019: ["try {} catch {}"],
-  2020: ["a?.b?.c", "a ?? b"],
+  2020: ["a?.b?.c", "a ?? b", 'import("./foo")'],
   2021: ["const budget = 1_000_000_000_000;", "a ||= b; // a || (a = b);"],
   2022: [
     outdent`
