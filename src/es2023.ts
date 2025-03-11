@@ -1,5 +1,5 @@
 import type { Visitor } from "@babel/traverse";
-import type { Context } from "./common";
+import type { Context } from "./common.js";
 
 /**
  * 判断是否是 es2023 语法

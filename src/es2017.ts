@@ -1,7 +1,7 @@
 import type { Visitor } from "@babel/traverse";
 import type { Comment, Identifier, RestElement, Pattern } from "@babel/types";
 import type { NodePath } from "@babel/traverse";
-import type { Context } from "./common";
+import type { Context } from "./common.js";
 
 /**
  * 判断是否是 es2017 语法

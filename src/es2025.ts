@@ -1,6 +1,6 @@
 import type { Visitor } from "@babel/traverse";
 import type { NodePath } from "@babel/traverse";
-import type { Context } from "./common";
+import type { Context } from "./common.js";
 
 /**
  * 判断正则表达式是否包含 ES2018 特性，并检测环境是否支持
