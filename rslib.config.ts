@@ -1,4 +1,34 @@
 import { defineConfig } from "@rslib/core";
+import fs from "node:fs";
+import path from "node:path";
+import type { Compiler } from "@rspack/core";
+
+class RspackDtsCopyPlugin {
+  apply(compiler: Compiler) {
+    const projectDir = __dirname;
+
+    compiler.hooks.emit.tapPromise(
+      "RspackDtsCopyPlugin",
+      async (compilation) => {
+        const target = path.join(projectDir, "src/type.d.ts");
+
+        compilation.emitAsset(
+          "esm/index.d.ts",
+          new compiler.webpack.sources.RawSource(
+            await fs.promises.readFile(target, "utf8")
+          )
+        );
+
+        compilation.emitAsset(
+          "cjs/index.d.ts",
+          new compiler.webpack.sources.RawSource(
+            await fs.promises.readFile(target, "utf8")
+          )
+        );
+      }
+    );
+  }
+}
 
 export default defineConfig({
   source: {
@@ -11,8 +41,9 @@ export default defineConfig({
       format: "esm",
       syntax: "es5",
       output: {
+        sourceMap: true,
         distPath: {
-          js: "dist/esm",
+          js: "esm",
         },
       },
     },
@@ -20,13 +51,19 @@ export default defineConfig({
       format: "cjs",
       syntax: "es5",
       output: {
+        sourceMap: true,
         distPath: {
-          js: "dist/cjs",
+          js: "cjs",
         },
       },
     },
   ],
   output: {
     target: "web",
+  },
+  tools: {
+    rspack: {
+      plugins: [new RspackDtsCopyPlugin()],
+    },
   },
 });
