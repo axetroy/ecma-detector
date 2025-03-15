@@ -71,41 +71,41 @@ export const isECMAScript2023 = (code: string) => isECMAScript(code, "2023");
 export const isECMAScript2024 = (code: string) => isECMAScript(code, "2024");
 export const isECMAScript2025 = (code: string) => isECMAScript(code, "2025");
 
-export const isECMAScript: IsECMAScript = Object.assign(
-  (code: string, version: ECMAScriptVersion) => {
-    if (version in versions === false) {
-      throw new Error(`Unsupported version: ${version}`);
-    }
-
-    const ast = parser.parse(code, { sourceType: "module" });
-
-    const result: Context = { result: false, sourceCode: code };
-
-    traverse(
-      ast,
-      combineVisitors(
-        ...Object.values(versions)
-          .slice(Number(version) - 2015)
-          .map((v) => v(result))
-      )
-    );
-
-    return result.result;
-  },
-  {
-    isECMAScript2015,
-    isECMAScript2016,
-    isECMAScript2017,
-    isECMAScript2018,
-    isECMAScript2019,
-    isECMAScript2020,
-    isECMAScript2021,
-    isECMAScript2022,
-    isECMAScript2023,
-    isECMAScript2024,
-    isECMAScript2025,
+export const isECMAScript: IsECMAScript = (
+  code: string,
+  version: ECMAScriptVersion
+) => {
+  if (version in versions === false) {
+    throw new Error(`Unsupported version: ${version}`);
   }
-);
+
+  const ast = parser.parse(code, { sourceType: "module" });
+
+  const result: Context = { result: false, sourceCode: code };
+
+  traverse(
+    ast,
+    combineVisitors(
+      ...Object.values(versions)
+        .slice(Number(version) - 2015)
+        .map((v) => v(result))
+    )
+  );
+
+  return result.result;
+};
+
+isECMAScript.isECMAScript2015 = isECMAScript2015;
+isECMAScript.isECMAScript2016 = isECMAScript2016;
+isECMAScript.isECMAScript2017 = isECMAScript2017;
+isECMAScript.isECMAScript2018 = isECMAScript2018;
+isECMAScript.isECMAScript2019 = isECMAScript2019;
+isECMAScript.isECMAScript2020 = isECMAScript2020;
+isECMAScript.isECMAScript2021 = isECMAScript2021;
+isECMAScript.isECMAScript2022 = isECMAScript2022;
+isECMAScript.isECMAScript2023 = isECMAScript2023;
+isECMAScript.isECMAScript2024 = isECMAScript2024;
+isECMAScript.isECMAScript2025 = isECMAScript2025;
 
 export default isECMAScript;
 
