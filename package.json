@@ -11,6 +11,8 @@
         "dist"
     ],
     "type": "commonjs",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.mjs",
     "exports": {
         "./package.json": {
             "import": "./package.json",
