@@ -10,8 +10,7 @@
     "files": [
         "dist"
     ],
-    "main": "./dist/cjs/index.js",
-    "module": "./dist/esm/index.js",
+    "type": "module",
     "exports": {
         "./package.json": {
             "import": "./package.json",
