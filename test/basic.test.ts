@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert";
-import { ECMAScriptVersion, isECMAScript } from "../src/index";
+import { isECMAScript } from "../src/index";
 import outdent from "outdent";
 
 const testCases = {
