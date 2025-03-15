@@ -13,7 +13,7 @@ class RspackDtsCopyPlugin {
         const target = path.join(projectDir, "src/type.d.ts");
 
         compilation.emitAsset(
-          "esm/index.d.ts",
+          "esm/index.d.mts",
           new compiler.webpack.sources.RawSource(
             await fs.promises.readFile(target, "utf8")
           )

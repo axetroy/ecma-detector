@@ -22,7 +22,7 @@
                 "types": "./dist/cjs/index.d.ts"
             },
             "import": {
-                "default": "./dist/esm/index.js",
+                "default": "./dist/esm/index.mjs",
                 "types": "./dist/esm/index.d.ts"
             }
         }
