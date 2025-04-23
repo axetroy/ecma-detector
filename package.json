@@ -40,15 +40,15 @@
     "license": "MIT",
     "dependencies": {},
     "devDependencies": {
-        "@babel/parser": "^7.26.10",
-        "@babel/traverse": "^7.26.10",
-        "@rslib/core": "^0.5.4",
+        "@babel/parser": "^7.27.0",
+        "@babel/traverse": "^7.27.0",
+        "@rslib/core": "^0.6.7",
         "@types/babel__core": "^7.20.5",
-        "@types/babel__traverse": "^7.20.6",
-        "@types/node": "^22.10.2",
+        "@types/babel__traverse": "^7.20.7",
+        "@types/node": "^22.14.1",
         "outdent": "^0.8.0",
-        "tsx": "^4.19.2",
-        "typescript": "^5.7.2"
+        "tsx": "^4.19.3",
+        "typescript": "^5.8.3"
     },
     "keywords": [
         "ecma",
