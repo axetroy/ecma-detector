@@ -41,7 +41,7 @@ export default defineConfig({
       format: "esm",
       syntax: "es5",
       output: {
-        sourceMap: true,
+        // sourceMap: true,
         distPath: {
           js: "esm",
         },
@@ -51,7 +51,7 @@ export default defineConfig({
       format: "cjs",
       syntax: "es5",
       output: {
-        sourceMap: true,
+        // sourceMap: true,
         distPath: {
           js: "cjs",
         },
@@ -60,6 +60,7 @@ export default defineConfig({
   ],
   output: {
     target: "web",
+    minify: true
   },
   tools: {
     rspack: {
